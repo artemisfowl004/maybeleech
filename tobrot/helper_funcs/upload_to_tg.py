@@ -12,14 +12,6 @@ import time
 from functools import partial
 from pathlib import Path
 
-
-logging.basicConfig(
-    level=logging.DEBUG,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
-LOGGER = logging.getLogger(__name__)
-
 import pyrogram.types as pyrogram
 import requests
 from hachoir.metadata import extractMetadata
@@ -316,6 +308,12 @@ async def upload_single_file(
         DOWNLOAD_LOCATION, "thumbnails", str(from_user) + ".jpg"
     )
     # LOGGER.info(thumbnail_location)
+    dyna_user_config_upload_as_doc = False
+    for key in iter(user_specific_config):
+        if key == from_user:
+            dyna_user_config_upload_as_doc=user_specific_config[key].upload_as_doc
+            LOGGER.info(f'Found dyanamic config for user {from_user}')
+    #
     if UPLOAD_AS_DOC.upper() == "TRUE":  # todo
         thumb = None
         thumb_image_path = None
