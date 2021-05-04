@@ -63,7 +63,7 @@ from tobrot.plugins.status_message_fn import (
     status_message_f,
     upload_document_f,
     upload_log_file,
-    upload_as_doc, upload_as_video)
+)
 
 if __name__ == "__main__":
     # create download directory, if not exist
@@ -103,7 +103,7 @@ if __name__ == "__main__":
     #
     incoming_purge_message_handler = MessageHandler(
         incoming_purge_message_f,
-        filters=filters.command(["purgeme"]) & filters.chat(chats=AUTH_CHANNEL),
+        filters=filters.command(["purge"]) & filters.chat(chats=AUTH_CHANNEL),
     )
     app.add_handler(incoming_purge_message_handler)
     #
@@ -157,19 +157,19 @@ if __name__ == "__main__":
     #
     exec_message_handler = MessageHandler(
         exec_message_f,
-        filters=filters.command(["execvv"]) & filters.chat(chats=AUTH_CHANNEL),
+        filters=filters.command(["exec"]) & filters.chat(chats=AUTH_CHANNEL),
     )
     app.add_handler(exec_message_handler)
     #
     eval_message_handler = MessageHandler(
         eval_message_f,
-        filters=filters.command(["evag"]) & filters.chat(chats=AUTH_CHANNEL),
+        filters=filters.command(["eval"]) & filters.chat(chats=AUTH_CHANNEL),
     )
     app.add_handler(eval_message_handler)
     #
     rename_message_handler = MessageHandler(
         rename_tg_file,
-        filters=filters.command([f"{RENAME_COMMAND}"]) & filters.chat(chats=AUTH_CHANNEL),
+        filters=filters.command(["rename"]) & filters.chat(chats=AUTH_CHANNEL),
     )
     app.add_handler(rename_message_handler)
     #
@@ -188,7 +188,7 @@ if __name__ == "__main__":
     #
     help_text_handler = MessageHandler(
         help_message_f,
-        filters=filters.command(os.environ.get("HELP_CMD", "help")) & filters.chat(chats=AUTH_CHANNEL),
+        filters=filters.command(["help"]) & filters.chat(chats=AUTH_CHANNEL),
     )
     app.add_handler(help_text_handler)
     #
@@ -213,8 +213,13 @@ if __name__ == "__main__":
     )
     app.add_handler(save_thumb_nail_handler)
     #
-    #
-    upload_as_doc_handler = MessageHandler(
+    clear_thumb_nail_handler = MessageHandler(
+        clear_thumb_nail,
+        filters=filters.command([f"{CLEAR_THUMBNAIL}"])
+        & filters.chat(chats=AUTH_CHANNEL),
+    )
+    app.add_handler(clear_thumb_nail_handler)
+
         upload_as_doc,
         filters=filters.command(os.environ.get("TOGGLE_DOC", "toggledoc")) & filters.chat(chats=AUTH_CHANNEL)
     )
@@ -225,12 +230,7 @@ if __name__ == "__main__":
         filters=filters.command(os.environ.get("TOGGLE_VIDEO", "togglevideo")) & filters.chat(chats=AUTH_CHANNEL)
     )
     app.add_handler(upload_as_video_handler)
-    clear_thumb_nail_handler = MessageHandler(
-        clear_thumb_nail,
-        filters=filters.command([f"{CLEAR_THUMBNAIL}"])
-        & filters.chat(chats=AUTH_CHANNEL),
-    )
-    app.add_handler(clear_thumb_nail_handler)
+    
     #
     rclone_config_handler = MessageHandler(
         rclone_command_f, filters=filters.command(["rcloggggrne"])
