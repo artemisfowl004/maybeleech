@@ -169,7 +169,7 @@ if __name__ == "__main__":
     #
     rename_message_handler = MessageHandler(
         rename_tg_file,
-        filters=filters.command(["rename"]) & filters.chat(chats=AUTH_CHANNEL),
+        filters=filters.command(["rename@urlrxbot"]) & filters.chat(chats=AUTH_CHANNEL),
     )
     app.add_handler(rename_message_handler)
     #
@@ -188,7 +188,7 @@ if __name__ == "__main__":
     #
     help_text_handler = MessageHandler(
         help_message_f,
-        filters=filters.command(["help"]) & filters.chat(chats=AUTH_CHANNEL),
+        filters=filters.command(["help@urlrxbot"]) & filters.chat(chats=AUTH_CHANNEL),
     )
     app.add_handler(help_text_handler)
     #
