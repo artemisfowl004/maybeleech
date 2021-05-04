@@ -31,8 +31,9 @@ from tobrot import (
     RCLONE_CONFIG,
     TG_MAX_FILE_SIZE,
     UPLOAD_AS_DOC,
-    gDict
-    user_specific_config)
+    gDict,
+    user_specific_config,
+)
 
 from tobrot.helper_funcs.copy_similar_file import copy_file
 from tobrot.helper_funcs.display_progress import humanbytes, Progress
