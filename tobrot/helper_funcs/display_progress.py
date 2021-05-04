@@ -77,31 +77,38 @@ class Progress:
             estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
 
             progress = "╭───── ⌊__Uploading : [{2}%] 📤__⌉\n│ \n├〖{0}{1}〗\n".format(
-            ''.join([FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 5))]),
-            ''.join([UN_FINISHED_PROGRESS_STR for i in range(20 - math.floor(percentage / 5))]),
-            round(percentage, 2))
-        cpu = "{psutil.cpu_percent()}%"
-        tmp = progress +"│" + "\n├**Done ✅ : **{0}\n├**Total 🗳 : **{1}\n├**Speed** 🚀 : {2}/s 🔺\n├**ETA** ⏳ : {3}".format(
-            humanbytes(current),
-            humanbytes(total),
-            humanbytes(speed),
-            # elapsed_time if elapsed_time != '' else "0 s",
-            estimated_total_time if estimated_total_time != '' else "0 s"
-        )
-        tmp += "\n│"+"\n╰── ⌊ ⚡️ using engine pyrogram ⌉"
-        try:
-           if not self._mess.photo:
-              await self._mess.edit_text(
-                  text="{}\n {}".format(ud_type, tmp), reply_markup=reply_markup
-                  )
-           else:
-               await self._mess.edit_caption(
+                "".join(
+                    [FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 5))]
+                ),
+                "".join(
+                    [
+                        UN_FINISHED_PROGRESS_STR
+                        for i in range(20 - math.floor(percentage / 5))
+                    ]
+                ),
+                round(percentage, 2),
+            )
+
+            tmp = progress +"│" + "\n├**Done ✅ : **{0}\n├**Total 🗳 : **{1}\n├**Speed** 🚀 : {2}/s 🔺\n├**ETA** ⏳ : {3}".format(
+                humanbytes(current),
+                humanbytes(total),
+                humanbytes(speed),
+                # elapsed_time if elapsed_time != '' else "0 s",
+                estimated_total_time if estimated_total_time != "" else "0 s",
+            )
+            try:
+                if not self._mess.photo:
+                    await self._mess.edit_text(
+                        text="{}\n {}".format(ud_type, tmp), reply_markup=reply_markup
+                    )
+                else:
+                    await self._mess.edit_caption(
                         caption="{}\n {}".format(ud_type, tmp)
                     )
-        except FloodWait as fd:
+            except FloodWait as fd:
                 logger.warning(f"{fd}")
                 time.sleep(fd.x)
-        except Exception as ou:
+            except Exception as ou:
                 logger.info(ou)
 
 
