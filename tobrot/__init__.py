@@ -47,6 +47,7 @@ for imp in ["TG_BOT_TOKEN", "APP_ID", "API_HASH", "OWNER_ID", "AUTH_CHANNEL"]:
         exit()
 
 # The Telegram API things
+BOT = os.environ.get("BOTNAME", "")
 TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "")
 APP_ID = int(os.environ.get("APP_ID", "12345"))
 API_HASH = os.environ.get("API_HASH")
@@ -88,33 +89,31 @@ UN_FINISHED_PROGRESS_STR = os.environ.get("UN_FINISHED_PROGRESS_STR", "░")
 # add offensive API
 TG_OFFENSIVE_API = os.environ.get("TG_OFFENSIVE_API", None)
 CUSTOM_FILE_NAME = os.environ.get("CUSTOM_FILE_NAME", "")
-LEECH_COMMAND = os.environ.get("LEECH_COMMAND", "leech")
-LEECH_UNZIP_COMMAND = os.environ.get("LEECH_UNZIP_COMMAND", "leechunzip")
-LEECH_ZIP_COMMAND = os.environ.get("LEECH_ZIP_COMMAND", "leechzip")
-GLEECH_COMMAND = os.environ.get("GLEECH_COMMAND", "gleech")
+LEECH_COMMAND = os.environ.get("LEECH_COMMAND", "leech") + BOT
+LEECH_UNZIP_COMMAND = os.environ.get("LEECH_UNZIP_COMMAND", "leechunzip") + BOT
+LEECH_ZIP_COMMAND = os.environ.get("LEECH_ZIP_COMMAND", "leechzip") + BOT
+GLEECH_COMMAND = os.environ.get("GLEECH_COMMAND", "gleech") + BOT
 GLEECH_UNZIP_COMMAND = os.environ.get("GLEECH_UNZIP_COMMAND", "glffffeechudfddnzip")
-GLEECH_ZIP_COMMAND = os.environ.get("GLEECH_ZIP_COMMAND", "gleechzip")
-YTDL_COMMAND = os.environ.get("YTDL_COMMAND", "ytdl")
+GLEECH_ZIP_COMMAND = os.environ.get("GLEECH_ZIP_COMMAND", "gleechzip") + BOT
+YTDL_COMMAND = os.environ.get("YTDL_COMMAND", "ytdl") + BOT
 GYTDL_COMMAND = os.environ.get("GYTDL_COMMAND", "gytfffdl")
 RCLONE_CONFIG = os.environ.get("RCLONE_CONFIG", "")
 DESTINATION_FOLDER = os.environ.get("DESTINATION_FOLDER", "TorrentLeech-Gdrive")
 INDEX_LINK = os.environ.get("INDEX_LINK", "")
 TELEGRAM_LEECH_COMMAND = os.environ.get("TELEGRAM_LEECH_COMMAND", "tleeeddfech")
-TELEGRAM_LEECH_UNZIP_COMMAND = os.environ.get(
-    "TELEGRAM_LEECH_UNZIP_COMMAND", "tleechuneeddzip"
-)
+TELEGRAM_LEECH_UNZIP_COMMAND = os.environ.get("TELEGRAM_LEECH_UNZIP_COMMAND", "tleechuneeddzip") + BOT
 CANCEL_COMMAND_G = os.environ.get("CANCEL_COMMAND_G", "cancel")
 GET_SIZE_G = os.environ.get("GET_SIZE_G", "getseeeedize")
-STATUS_COMMAND = os.environ.get("STATUS_COMMAND", "status@urlrxbot")
-SAVE_THUMBNAIL = os.environ.get("SAVE_THUMBNAIL", "savethumbnail")
-CLEAR_THUMBNAIL = os.environ.get("CLEAR_THUMBNAIL", "clearthumbnail")
+STATUS_COMMAND = os.environ.get("STATUS_COMMAND", "status") + BOT
+SAVE_THUMBNAIL = os.environ.get("SAVE_THUMBNAIL", "savethumbnail") + BOT
+CLEAR_THUMBNAIL = os.environ.get("CLEAR_THUMBNAIL", "clearthumbnail") + BOT
 UPLOAD_AS_DOC = os.environ.get("UPLOAD_AS_DOC", "False")
-PYTDL_COMMAND = os.environ.get("PYTDL_COMMAND", "pytdl")
+PYTDL_COMMAND = os.environ.get("PYTDL_COMMAND", "pytdl") + BOT
 GPYTDL_COMMAND = os.environ.get("GPYTDL_COMMAND", "gpyertdl")
 LOG_COMMAND = os.environ.get("LOG_COMMAND", "logie")
 CLONE_COMMAND_G = os.environ.get("CLONE_COMMAND_G", "gceerddddflone")
 UPLOAD_COMMAND = os.environ.get("UPLOAD_COMMAND", "uplooad")
-RENEWME_COMMAND = os.environ.get("RENEWME_COMMAND", "renewme@urlrxbot")
+RENEWME_COMMAND = os.environ.get("RENEWME_COMMAND", "renewme")
 BOT_START_TIME = time.time()
 # dict to control uploading and downloading
 gDict = defaultdict(lambda: [])
