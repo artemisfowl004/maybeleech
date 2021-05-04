@@ -315,7 +315,7 @@ async def upload_single_file(
             dyna_user_config_upload_as_doc=user_specific_config[key].upload_as_doc
             LOGGER.info(f'Found dyanamic config for user {from_user}')
     #
-    if UPLOAD_AS_DOC.upper() == "TRUE":  # todo
+    if UPLOAD_AS_DOC.upper() == 'TRUE' or dyna_user_config_upload_as_doc:
         thumb = None
         thumb_image_path = None
         if os.path.exists(thumbnail_location):
