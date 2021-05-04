@@ -31,7 +31,7 @@ from tobrot import (
     CUSTOM_FILE_NAME,
     #STRIP_FILE_NAMES
 )
-from pyrogram import (
+from pyrogram.types import (
 	InlineKeyboardButton,
 	InlineKeyboardMarkup,
 	Message
