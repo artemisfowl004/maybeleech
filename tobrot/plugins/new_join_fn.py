@@ -2,10 +2,20 @@
 # -*- coding: utf-8 -*-
 # (c) Shrimadhav U K
 
-import logging
+# the logging things
+import logging, os
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logging.getLogger("pyrogram").setLevel(logging.WARNING)
+LOGGER = logging.getLogger(__name__)
 
 import pyrogram
-from tobrot import AUTH_CHANNEL, LOGGER
+
+from tobrot import (
+    AUTH_CHANNEL
+)
 
 
 async def new_join_f(client, message):
@@ -13,7 +23,10 @@ async def new_join_f(client, message):
     if chat_type != "private":
         await message.reply_text(f"Current CHAT ID: <code>{message.chat.id}</code>")
         # leave chat
-        await client.leave_chat(chat_id=message.chat.id, delete=True)
+        await client.leave_chat(
+            chat_id=message.chat.id,
+            delete=True
+        )
     # delete all other messages, except for AUTH_CHANNEL
     await message.delete(revoke=True)
 
@@ -23,7 +36,7 @@ async def help_message_f(client, message):
     #channel_id = str(AUTH_CHANNEL)[4:]
     #message_id = 99
     # display the /help
-    DEV = os.environ.get("DEV", "@gillz_13")
+    DEV = os.environ.get("DEV", "@Gillz_13")
     button = []
     link = "https://telegra.ph/Help-Message-03-12"
     button.append([pyrogram.InlineKeyboardButton(text="Click to Read", url=f"{link}")])
