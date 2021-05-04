@@ -260,9 +260,9 @@ async def call_apropriate_function(
 # https://github.com/jaskaranSM/UniBorg/blob/6d35cf452bce1204613929d4da7530058785b6b1/stdplugins/aria.py#L136-L164
 async def check_progress_for_dl(aria2, gid, event, previous_message):
      file = aria2.get_download(gid)
-        complete = file.is_complete
-        is_file = file.seeder
-        if not complete:
+     complete = file.is_complete
+     is_file = file.seeder
+     if not complete:
             if not file.error_message:
                 msg = ""
                 # sometimes, this weird https://t.me/c/1220993104/392975
