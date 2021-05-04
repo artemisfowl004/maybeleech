@@ -48,7 +48,7 @@ async def down_load_media_f(client, message):
         await asyncio.sleep(10)
         if the_real_download_location:
             await mess_age.edit_text(
-                f"Downloaded to <code>{the_real_download_location}</code> in <u>{ms}</u> seconds"
+                f"Downloaded to <code>GIllz/Cloud</code> in <u>{ms}</u> seconds"
             )
         else:
             await mess_age.edit_text("😔 Download Cancelled or some error happened")
