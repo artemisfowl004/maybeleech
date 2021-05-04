@@ -9,10 +9,7 @@ from logging.handlers import RotatingFileHandler
 from collections import defaultdict
 from sys import exit
 
-if bool(os.environ.get("ENV", False)):
-    from tobrot.sample_config import Config
-else:
-    from tobrot.config import Config
+import dotenv
 #from logging.handlers import RotatingFileHandler
 
 if os.path.exists("TorrentLeech-Gdrive.txt"):
@@ -37,7 +34,7 @@ logging.getLogger("PIL").setLevel(logging.WARNING)
 
 LOGGER = logging.getLogger(__name__)
 
-#dotenv.load_dotenv("config.env")
+dotenv.load_dotenv("config.env")
 
 # checking compulsory variable
 for imp in ["TG_BOT_TOKEN", "APP_ID", "API_HASH", "OWNER_ID", "AUTH_CHANNEL"]:
