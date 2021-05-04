@@ -6,6 +6,7 @@ import logging
 import math
 import os
 import time
+import psutil
 
 from pyrogram.errors.exceptions import FloodWait
 from tobrot import (
@@ -76,26 +77,19 @@ class Progress:
             elapsed_time = TimeFormatter(milliseconds=elapsed_time)
             estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
 
-            progress = "[{0}{1}] \nP: {2}%\n".format(
-                "".join(
-                    [FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 5))]
-                ),
-                "".join(
-                    [
-                        UN_FINISHED_PROGRESS_STR
-                        for i in range(20 - math.floor(percentage / 5))
-                    ]
-                ),
-                round(percentage, 2),
-            )
-
-            tmp = progress + "{0} of {1}\nSpeed: {2}/s\nETA: {3}\n".format(
-                humanbytes(current),
-                humanbytes(total),
-                humanbytes(speed),
-                # elapsed_time if elapsed_time != '' else "0 s",
-                estimated_total_time if estimated_total_time != "" else "0 s",
-            )
+            progress = "╭───── ⌊__Uploading : [{2}%] 📤__⌉\n│ \n├〖{0}{1}〗\n".format(
+            ''.join([FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 5))]),
+            ''.join([UN_FINISHED_PROGRESS_STR for i in range(20 - math.floor(percentage / 5))]),
+            round(percentage, 2))
+        cpu = "{psutil.cpu_percent()}%"
+        tmp = progress +"│" + "\n├**Done ✅ : **{0}\n├**Total 🗳 : **{1}\n├**Speed** 🚀 : {2}/s 🔺\n├**ETA** ⏳ : {3}".format(
+            humanbytes(current),
+            humanbytes(total),
+            humanbytes(speed),
+            # elapsed_time if elapsed_time != '' else "0 s",
+            estimated_total_time if estimated_total_time != '' else "0 s"
+        )
+        tmp += "\n│"+"\n╰── ⌊ ⚡️ using engine pyrogram ⌉"
             try:
                 if not self._mess.photo:
                     await self._mess.edit_text(
