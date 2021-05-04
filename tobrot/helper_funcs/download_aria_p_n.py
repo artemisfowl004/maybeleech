@@ -357,47 +357,29 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
             await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
             await check_progress_for_dl(aria2, gid, event, previous_message)
         else:
-            LOGGER.info(
-                f"Downloaded Successfully: `{file.name} ({file.total_length_string()})` 🤒"
-            )
+            msg = file.error_message
+                await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
+                await event.edit(f"`{msg}`")
+                return False
             await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
-            await event.edit(
-                f"Downloaded Successfully: `{file.name} ({file.total_length_string()})` 🤒"
-            )
+            await check_progress_for_dl(aria2, gid, event, previous_message)
+        else:
+            await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
+            await event.edit(f"File Downloaded Successfully: `{file.name}`")
             return True
-    except aria2p.client.ClientException:
-        await event.edit(
-            f"Download cancelled :\n<code>{file.name} ({file.total_length_string()})</code>"
-        )
-    except MessageNotModified as ep:
-        LOGGER.info(ep)
-        await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
-        await check_progress_for_dl(aria2, gid, event, previous_message)
-    except FloodWait as e:
-        LOGGER.info(e)
-        time.sleep(e.x)
-    except RecursionError:
-        file.remove(force=True, files=True)
-        await event.edit(
-            "Download Auto Canceled :\n\n"
-            "Your Torrent/Link is Dead.".format(file.name)
-        )
-        return False
     except Exception as e:
         LOGGER.info(str(e))
-        if "not found" in str(e) or "'file'" in str(e):
-            await event.edit(
-                f"Download cancelled :\n<code>{file.name} ({file.total_length_string()})</code>"
-            )
+        if " not found" in str(e) or "'file'" in str(e):
+            await event.edit("Download Canceled")
+            return False
+        elif " depth exceeded" in str(e):
+            file.remove(force=True)
+            await event.edit("Download Auto Canceled\nYour Torrent/Link is Dead.")
             return False
         else:
             LOGGER.info(str(e))
-            await event.edit(
-                "<u>error</u> :\n<code>{}</code> \n\n#error".format(str(e))
-            )
-            return False
-
-
+            await event.edit("<u>error</u> :\n`{}` \n\n#error".format(str(e)))
+            return
 # https://github.com/jaskaranSM/UniBorg/blob/6d35cf452bce1204613929d4da7530058785b6b1/stdplugins/aria.py#L136-L164
 
 
