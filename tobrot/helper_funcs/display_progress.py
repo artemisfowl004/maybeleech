@@ -90,7 +90,7 @@ class Progress:
             estimated_total_time if estimated_total_time != '' else "0 s"
         )
         tmp += "\n│"+"\n╰── ⌊ ⚡️ using engine pyrogram ⌉"
-        try:
+            try:
                 if not self._mess.photo:
                     await self._mess.edit_text(
                         text="{}\n {}".format(ud_type, tmp), reply_markup=reply_markup
@@ -99,10 +99,10 @@ class Progress:
                     await self._mess.edit_caption(
                         caption="{}\n {}".format(ud_type, tmp)
                     )
-        except FloodWait as fd:
+            except FloodWait as fd:
                 logger.warning(f"{fd}")
                 time.sleep(fd.x)
-        except Exception as ou:
+            except Exception as ou:
                 logger.info(ou)
 
 
