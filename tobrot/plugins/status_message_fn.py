@@ -12,7 +12,7 @@ import time
 import traceback
 
 from tobrot.UserDynaConfig import UserDynaConfig
-from tobrot import AUTH_CHANNEL, BOT_START_TIME, LOGGER, MAX_MESSAGE_LENGTH
+from tobrot import AUTH_CHANNEL, BOT_START_TIME, LOGGER, MAX_MESSAGE_LENGTH, user_specific_config
 from tobrot.helper_funcs.admin_check import AdminCheck
 
 # the logging things
