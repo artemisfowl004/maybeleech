@@ -29,7 +29,7 @@ from tobrot import (
     DOWNLOAD_LOCATION,
     EDIT_SLEEP_TIME_OUT,
     CUSTOM_FILE_NAME,
-    STRIP_FILE_NAMES
+    #STRIP_FILE_NAMES
 )
 from pyrogram import (
 	InlineKeyboardButton,
