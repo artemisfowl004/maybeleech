@@ -213,6 +213,18 @@ if __name__ == "__main__":
     )
     app.add_handler(save_thumb_nail_handler)
     #
+    #
+    upload_as_doc_handler = MessageHandler(
+        upload_as_doc,
+        filters=Filters.command(os.environ.get("TOGGLE_DOC", "toggledoc")) & Filters.chat(chats=AUTH_CHANNEL)
+    )
+    app.add_handler(upload_as_doc_handler)
+    #
+    upload_as_video_handler = MessageHandler(
+        upload_as_video,
+        filters=Filters.command(os.environ.get("TOGGLE_VIDEO", "togglevideo")) & Filters.chat(chats=AUTH_CHANNEL)
+    )
+    app.add_handler(upload_as_video_handler)
     clear_thumb_nail_handler = MessageHandler(
         clear_thumb_nail,
         filters=filters.command([f"{CLEAR_THUMBNAIL}"])
