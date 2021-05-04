@@ -53,7 +53,8 @@ from tobrot.plugins.incoming_message_fn import (
     incoming_purge_message_f,
     incoming_youtube_dl_f,
     rename_tg_file,
-)
+    upload_as_doc, upload_as_video)
+#)
 from tobrot.plugins.new_join_fn import help_message_f, new_join_f
 from tobrot.plugins.rclone_size import check_size_g, g_clearme
 from tobrot.plugins.status_message_fn import (
