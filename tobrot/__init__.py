@@ -136,3 +136,4 @@ def multi_rclone_init():
 
 
 multi_rclone_init()
+user_specific_config=dict()
