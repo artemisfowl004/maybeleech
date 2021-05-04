@@ -76,7 +76,7 @@ async def status_message_f(client, message):
     ms_g = (
             f'<b> ─────────「  ⭕️ BOT STATISTICS ⭕️  」</b>\n' 
             f'<b>│</b>\n' \
-            f'<b>├  ⏰ Bot Uptime : {currentTime}</b>\n' 
+            f'<b>├  ⏰ Bot Uptime : <code>{hr} : {mi} : {se}</code></b>\n' 
             f'<b>├  💾 Total Disk Space : {total}</b>\n' 
             f'<b>├  📀 Total Used Space : {used}</b>\n' 
             f'<b>├  💿 Total Free Space : {free}</b>\n' 
