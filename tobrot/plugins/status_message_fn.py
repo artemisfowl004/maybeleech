@@ -74,10 +74,14 @@ async def status_message_f(client, message):
     free = humanbytes(free)
 
     ms_g = (
-        f"<b>Bot Uptime</b>: <code>{hr} : {mi} : {se}</code>\n"
-        f"<b>Total disk space</b>: <code>{total}</code>\n"
-        f"<b>Used</b>: <code>{used}</code>\n"
-        f"<b>Free</b>: <code>{free}</code>\n"
+            f'<b> ─────────「  ⭕️ BOT STATISTICS ⭕️  」</b>\n' 
+            f'<b>│</b>\n' \
+            f'<b>├  ⏰ Bot Uptime : {currentTime}</b>\n' 
+            f'<b>├  💾 Total Disk Space : {total}</b>\n' 
+            f'<b>├  📀 Total Used Space : {used}</b>\n' 
+            f'<b>├  💿 Total Free Space : {free}</b>\n' 
+            f'<b>│</b>\n' \
+            f'<b>╰──「 🚸 @BOT_empire🚸 」</b>'
     )
     # LOGGER.info(ms_g)
 
