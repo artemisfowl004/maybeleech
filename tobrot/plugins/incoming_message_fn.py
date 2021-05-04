@@ -201,10 +201,7 @@ async def g_yt_playlist(client, message):
         await message.reply_text("😔 No downloading source provided 🙄", quote=True)
         return
     if "youtube.com/playlist" in url:
-        #i_m_sefg = await message.reply_text(
-            #f"💀 Downloading for you <a href='tg://user?id={usr_id}'>🤗</a>",
-            parse_mode="html",
-        #)
+        i_m_sefg = await message.reply_text("processing", quote=True)
         await yt_playlist_downg(message, i_m_sefg, client, is_cloud)
 
     else:
