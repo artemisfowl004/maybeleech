@@ -1,31 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | gautamajay52
-
-import logging
-import math
-import os
-import time
-import psutil
-
-from pyrogram.errors.exceptions import FloodWait
-from tobrot import (
-    EDIT_SLEEP_TIME_OUT,
-    FINISHED_PROGRESS_STR,
-    UN_FINISHED_PROGRESS_STR,
-    gDict,
-    LOGGER,
-)
-from pyrogram import Client
-
-logging.basicConfig(
-    level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-)
-logger = logging.getLogger(__name__)
-
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
-
-
 class Progress:
     def __init__(self, from_user, client, mess: Message):
         self._from_user = from_user
