@@ -356,7 +356,7 @@ async def check_progress_for_dl(aria2, gid, event, previous_message):
                 return False
             await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
             await check_progress_for_dl(aria2, gid, event, previous_message)
-        else:
+           #else:
             msg = file.error_message
                 await asyncio.sleep(EDIT_SLEEP_TIME_OUT)
                 await event.edit(f"`{msg}`")
