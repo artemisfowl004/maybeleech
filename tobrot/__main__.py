@@ -216,13 +216,13 @@ if __name__ == "__main__":
     #
     upload_as_doc_handler = MessageHandler(
         upload_as_doc,
-        filters=Filters.command(os.environ.get("TOGGLE_DOC", "toggledoc")) & Filters.chat(chats=AUTH_CHANNEL)
+        filters=filters.command(os.environ.get("TOGGLE_DOC", "toggledoc")) & filters.chat(chats=AUTH_CHANNEL)
     )
     app.add_handler(upload_as_doc_handler)
     #
     upload_as_video_handler = MessageHandler(
         upload_as_video,
-        filters=Filters.command(os.environ.get("TOGGLE_VIDEO", "togglevideo")) & Filters.chat(chats=AUTH_CHANNEL)
+        filters=filters.command(os.environ.get("TOGGLE_VIDEO", "togglevideo")) & filters.chat(chats=AUTH_CHANNEL)
     )
     app.add_handler(upload_as_video_handler)
     clear_thumb_nail_handler = MessageHandler(
