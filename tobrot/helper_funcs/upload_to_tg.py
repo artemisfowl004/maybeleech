@@ -12,6 +12,14 @@ import time
 from functools import partial
 from pathlib import Path
 
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logging.getLogger("pyrogram").setLevel(logging.WARNING)
+LOGGER = logging.getLogger(__name__)
+
 import pyrogram.types as pyrogram
 import requests
 from hachoir.metadata import extractMetadata
@@ -32,7 +40,7 @@ from tobrot import (
     TG_MAX_FILE_SIZE,
     UPLOAD_AS_DOC,
     gDict
-   user_specific_config)
+    user_specific_config)
 
 from tobrot.helper_funcs.copy_similar_file import copy_file
 from tobrot.helper_funcs.display_progress import humanbytes, Progress
