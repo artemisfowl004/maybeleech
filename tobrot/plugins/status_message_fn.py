@@ -74,18 +74,18 @@ async def status_message_f(client, message):
     free = humanbytes(free)
 
     ms_g = (
-            f'╭───「  ⭕️ BOT STATISTICS ⭕️  」</b>\n' 
+            f'╭───「  ⭕️ BOT STATISTICS ⭕️  」</b>\n\n│' 
             f'│</b>\n' 
-            f'├  ⏰ Bot Uptime : <code>{hr} : {mi} : {se}</code>\n│' 
-            f'├  💾 Total Disk Space : {total}</b>\n│' 
-            f'├  📀 Total Used Space : {used}</b>\n│' 
-            f'├  💿 Total Free Space : {free}</b>\n│' 
+            f'├  ⏰ Bot Uptime : <code>{hr} : {mi} : {se}</code>\n\n│' 
+            f'├  💾 Total Disk Space : {total}</b>\n\n│' 
+            f'├  📀 Total Used Space : {used}</b>\n\n│' 
+            f'├  💿 Total Free Space : {free}</b>\n\n│' 
             f'│</b>\n' 
             f'╰──「 🚸 @BOT_empire🚸 」</b>'
     )
     # LOGGER.info(ms_g)
 
-    msg = ms_g + "\n" + msg
+    msg = ms_g + "\n\n\n" + msg
     LOGGER.info(msg)
     if len(msg) > MAX_MESSAGE_LENGTH:
         with io.BytesIO(str.encode(msg)) as out_file:
