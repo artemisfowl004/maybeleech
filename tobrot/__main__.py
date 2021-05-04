@@ -63,7 +63,7 @@ from tobrot.plugins.status_message_fn import (
     status_message_f,
     upload_document_f,
     upload_log_file,
-)
+    upload_as_doc, upload_as_video)
 
 if __name__ == "__main__":
     # create download directory, if not exist
