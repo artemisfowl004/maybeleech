@@ -1,3 +1,30 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# (c) Shrimadhav U K | gautamajay52
+
+import logging
+import math
+import os
+import time
+
+from pyrogram.errors.exceptions import FloodWait
+from tobrot import (
+    EDIT_SLEEP_TIME_OUT,
+    FINISHED_PROGRESS_STR,
+    UN_FINISHED_PROGRESS_STR,
+    gDict,
+    LOGGER,
+)
+from pyrogram import Client
+
+logging.basicConfig(
+    level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
+
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
+
+
 class Progress:
     def __init__(self, from_user, client, mess: Message):
         self._from_user = from_user
@@ -49,20 +76,27 @@ class Progress:
             elapsed_time = TimeFormatter(milliseconds=elapsed_time)
             estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
 
-            progress = "╭───── ⌊__Uploading : [{2}%] 📤__⌉\n│ \n├〖{0}{1}〗\n".format(
-            ''.join([FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 5))]),
-            ''.join([UN_FINISHED_PROGRESS_STR for i in range(20 - math.floor(percentage / 5))]),
-            round(percentage, 2))
-        cpu = "{psutil.cpu_percent()}%"
-        tmp = progress +"│" + "\n├**Done ✅ : **{0}\n├**Total 🗳 : **{1}\n├**Speed** 🚀 : {2}/s 🔺\n├**ETA** ⏳ : {3}".format(
-            humanbytes(current),
-            humanbytes(total),
-            humanbytes(speed),
-            # elapsed_time if elapsed_time != '' else "0 s",
-            estimated_total_time if estimated_total_time != '' else "0 s"
-        )
-        tmp += "\n│"+"\n╰── ⌊ ⚡️ using engine pyrogram ⌉"
-        try:
+            progress = "[{0}{1}] \nP: {2}%\n".format(
+                "".join(
+                    [FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 5))]
+                ),
+                "".join(
+                    [
+                        UN_FINISHED_PROGRESS_STR
+                        for i in range(20 - math.floor(percentage / 5))
+                    ]
+                ),
+                round(percentage, 2),
+            )
+
+            tmp = progress + "{0} of {1}\nSpeed: {2}/s\nETA: {3}\n".format(
+                humanbytes(current),
+                humanbytes(total),
+                humanbytes(speed),
+                # elapsed_time if elapsed_time != '' else "0 s",
+                estimated_total_time if estimated_total_time != "" else "0 s",
+            )
+            try:
                 if not self._mess.photo:
                     await self._mess.edit_text(
                         text="{}\n {}".format(ud_type, tmp), reply_markup=reply_markup
@@ -71,10 +105,10 @@ class Progress:
                     await self._mess.edit_caption(
                         caption="{}\n {}".format(ud_type, tmp)
                     )
-        except FloodWait as fd:
+            except FloodWait as fd:
                 logger.warning(f"{fd}")
                 time.sleep(fd.x)
-        except Exception as ou:
+            except Exception as ou:
                 logger.info(ou)
 
 
