@@ -241,7 +241,7 @@ async def call_apropriate_function(
                     message_to_send += "\n"
                 if message_to_send != "":
                     mention_req_user = (
-                        f"<a href='tg://user?id={user_id}'>𝐒𝐨𝐮𝐫𝐜𝐞 𝐂𝐨𝐝𝐞 😑</a>\n\n"
+                        f"<a href='tg://user?id={user_id}'>𝐒ender</a>\n\n"
                     )
                     message_to_send = mention_req_user + message_to_send
                     message_to_send = message_to_send + "\n\n" + "#BOT1uploads"
