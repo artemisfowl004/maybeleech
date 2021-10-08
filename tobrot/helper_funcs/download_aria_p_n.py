@@ -58,6 +58,7 @@ async def aria_start():
     aria2_daemon_start_cmd.append(
         f"--bt-stop-timeout={MAX_TIME_TO_WAIT_FOR_TORRENTS_TO_START}"
     )
+    aria2_daemon_start_cmd.append("--check-certificate=false")
     #
     LOGGER.info(aria2_daemon_start_cmd)
     #
